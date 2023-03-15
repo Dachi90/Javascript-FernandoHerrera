@@ -10,6 +10,40 @@
     <link rel="stylesheet" href="assets/css/style.css"">
   </head>
   <body>
+    <header class="titulo">Blackjack</header>
+
+    <div class="row mt-2">
+      <div class="col text-center">
+        <button class="btn btn-danger">Nuevo Juego</button>
+        <button class="btn btn-primary">Pedir carta</button>
+        <button class="btn btn-primary">Detener</button>
+      </div>
+    </div>
+
+    <div class="row container">
+      <div class="col">
+        <h1>Jugador 1 <small>0</small></h1>
+        <div id="jugador-cartas">
+          <img class="carta" src="assets/cartas/2S.png" alt="carta" />
+          <img class="carta" src="assets/cartas/2S.png" alt="carta" />
+          <img class="carta" src="assets/cartas/2S.png" alt="carta" />
+          <img class="carta" src="assets/cartas/2S.png" alt="carta" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row container mt-2">
+      <div class="col">
+        <h1>Computadora <small>0</small></h1>
+        <div id="computadora-cartas">
+          <img class="carta" src="assets/cartas/3S.png" alt="carta" />
+          <img class="carta" src="assets/cartas/3S.png" alt="carta" />
+          <img class="carta" src="assets/cartas/3S.png" alt="carta" />
+          <img class="carta" src="assets/cartas/3S.png" alt="carta" />
+        </div>
+      </div>
+    </div>
+
     <script src="assets/js/juego.js"></script>
   </body>
 </html>
