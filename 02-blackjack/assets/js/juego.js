@@ -24,7 +24,7 @@ const crearDeck = () => {
   }
 
   deck = _.shuffle(deck);
-  console.log(deck);
+  //console.log(deck);
 
   return deck;
 };
@@ -38,10 +38,31 @@ const pedirCarta = () => {
   }
 
   let carta = deck.shift();
-  console.log(carta);
-  console.log(deck);
+  //console.log(carta);
+  //console.log(deck);
 
   return carta;
 };
 
 //pedirCarta();
+const valorCarta = (carta) => {
+  const valor = carta.substring(0, carta.length - 1);
+  //let puntos = 0;
+  //console.log({ valor });
+
+  // isNaN() es una funcion de js que evalua si el parámetro que le pasamos no es un número y si es asñi devuelve un true, si es un númeor devuelve un false
+  /*  if (isNaN(valor)) {
+    console.log("No es un número");
+    puntos = valor === "A" ? 11 : 10;
+  } else {
+    console.log("Es un número");
+    puntos = parseInt(valor);
+  } 
+  console.log(puntos);*/
+
+  // Reducimos el if anterior
+  return isNaN(valor) ? (valor === "A" ? 11 : 10) : parseInt(valor);
+};
+
+const valor = valorCarta(pedirCarta());
+console.log({ valor });
