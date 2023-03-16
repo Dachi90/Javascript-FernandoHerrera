@@ -39,8 +39,6 @@ const pedirCarta = () => {
 
   let carta = deck.shift();
   //console.log(carta);
-  //console.log(deck);
-
   return carta;
 };
 
@@ -65,4 +63,4 @@ const valorCarta = (carta) => {
 };
 
 const valor = valorCarta(pedirCarta());
-console.log({ valor });
+console.log(valor);
