@@ -9,6 +9,17 @@ let deck = [];
 const tipos = ["C", "D", "H", "S"];
 const especiales = ["A", "J", "Q", "K"];
 
+let puntosJugador = 0;
+let puntosComputadora = 0;
+
+//Referencias del HTML
+const btnNuevo = document.querySelector("#btnNuevo");
+const btnPedir = document.querySelector("#btnPedir");
+const btnDetener = document.querySelector("#btnDetener");
+const marcadores = document.querySelectorAll("small");
+const divCartasJugador = document.querySelector("#jugador-cartas");
+const divCartasComputadora = document.querySelector("#computadora-cartas");
+
 // Esta función crea una nueva baraja
 const crearDeck = () => {
   for (let i = 2; i <= 10; i++) {
@@ -45,22 +56,82 @@ const pedirCarta = () => {
 //pedirCarta();
 const valorCarta = (carta) => {
   const valor = carta.substring(0, carta.length - 1);
-  //let puntos = 0;
-  //console.log({ valor });
-
-  // isNaN() es una funcion de js que evalua si el parámetro que le pasamos no es un número y si es asñi devuelve un true, si es un númeor devuelve un false
-  /*  if (isNaN(valor)) {
-    console.log("No es un número");
-    puntos = valor === "A" ? 11 : 10;
-  } else {
-    console.log("Es un número");
-    puntos = parseInt(valor);
-  } 
-  console.log(puntos);*/
-
-  // Reducimos el if anterior
   return isNaN(valor) ? (valor === "A" ? 11 : 10) : parseInt(valor);
 };
 
-const valor = valorCarta(pedirCarta());
-console.log(valor);
+//Turno de la computadora
+const turnoComputaora = (puntosMinimos) => {
+  do {
+    const carta = pedirCarta();
+    //console.log(carta);
+    puntosComputadora = puntosComputadora + valorCarta(carta);
+    //console.log(puntosComputadora);
+    marcadores[1].innerText = puntosComputadora;
+
+    const imgCarta = document.createElement("img");
+    imgCarta.src = `assets/cartas/${carta}.png`;
+    imgCarta.classList.add("carta");
+    divCartasComputadora.append(imgCarta);
+    if (puntosMinimos > 21) {
+      break;
+    }
+  } while (puntosComputadora < puntosMinimos && puntosMinimos <= 21);
+
+  setTimeout(() => {
+    if (puntosComputadora === puntosMinimos) {
+      alert("Nadie gana :(");
+    } else if (puntosMinimos > 21) {
+      alert("La computadora gana");
+    } else if (puntosComputadora > 21) {
+      alert("Ganaste");
+    } else {
+      alert("Computadora gana");
+    }
+  }, 100);
+};
+
+// Eventos
+btnPedir.addEventListener("click", () => {
+  const carta = pedirCarta();
+  //console.log(carta);
+
+  puntosJugador = puntosJugador + valorCarta(carta);
+  //console.log(puntosJugador);
+  marcadores[0].innerText = puntosJugador;
+
+  const imgCarta = document.createElement("img");
+  imgCarta.src = `assets/cartas/${carta}.png`;
+  imgCarta.classList.add("carta");
+  divCartasJugador.append(imgCarta);
+
+  if (puntosJugador > 21) {
+    console.warn("Lo siento mucho, perdiste");
+    btnPedir.disabled = true;
+    btnDetener.disabled = true;
+    turnoComputaora(puntosJugador);
+  } else if (puntosJugador === 21) {
+    console.warn("21 Genial");
+    btnPedir.disabled = true;
+    btnDetener.disabled = true;
+    turnoComputaora(puntosJugador);
+  }
+});
+
+btnDetener.addEventListener("click", () => {
+  btnDetener.disabled = true;
+  btnPedir.disabled = true;
+  turnoComputaora(puntosJugador);
+});
+
+btnNuevo.addEventListener("click", () => {
+  deck = [];
+  deck = crearDeck();
+  puntosJugador = 0;
+  puntosComputadora = 0;
+  marcadores[0].innerText = 0;
+  marcadores[1].innerText = 0;
+  divCartasJugador.innerHTML = "";
+  divCartasComputadora.innerHTML = "";
+  btnDetener.disabled = false;
+  btnPedir.disabled = false;
+});
