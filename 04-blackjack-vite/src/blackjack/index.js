@@ -1,4 +1,6 @@
 import _ from 'underscore';
+//import crearDeck , {miNombre} from './usecases/crear-deck.js'; // importacion por defecto y individual
+//import { crearDeck as crearNuevoDeck } from './usecases/crear-deck.js'; // con el "as" podemos importar algo y modificarle el nombre en este archivo
 import { crearDeck } from './usecases/crear-deck.js';
 
 /**
@@ -25,7 +27,7 @@ const divCartasComputadora = document.querySelector('#computadora-cartas');
 
 const puntosHTML = document.querySelectorAll('small');
 
-crearDeck();
+deck = crearDeck(tipos, especiales);
 
 // Esta función me permite tomar una carta
 const pedirCarta = () => {
