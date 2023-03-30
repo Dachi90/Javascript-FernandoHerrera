@@ -1,4 +1,5 @@
 import html from './app.html?raw';
+
 /**
  *
  * @param {String} elementId Elemento donde vamos a renderizar la aplicacion
