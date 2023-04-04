@@ -7,7 +7,13 @@ const Filters = {
 };
 
 const state = {
-	todos: [new Todo('Piedra del alma'), new Todo('Piedra del infinito'), new Todo('Piedra del tiempo'), new Todo('Piedra del poder'), new Todo('Piedra de la realidad')],
+	todos: [
+		new Todo('Piedra del alma'),
+		new Todo('Piedra del infinito'),
+		new Todo('Piedra del tiempo'),
+		new Todo('Piedra del poder'),
+		new Todo('Piedra de la realidad'),
+	],
 	filter: Filters.All,
 };
 
