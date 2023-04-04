@@ -27,6 +27,7 @@ export const App = (elementId) => {
 
 	//Referencias HMTL
 	const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
+	const TodoListUL = document.querySelector(ElementIDs.TodoList);
 
 	//Listeners
 	newDescriptionInput.addEventListener('keyup', (event) => {
@@ -38,5 +39,12 @@ export const App = (elementId) => {
 		todoStore.addTodo(event.target.value);
 		displayTodos();
 		event.target.value = '';
+	});
+
+	TodoListUL.addEventListener('click', (event) => {
+		//closest('') Busca el elemento que le pasesmos más cercano hacia sus padres, en este caso el elemento más cercano hacia afuera que tenga el atributo data-id
+		const element = event.target.closest('[data-id]');
+		todoStore.toggleTodo(element.getAttribute('data-id'));
+		displayTodos();
 	});
 };
