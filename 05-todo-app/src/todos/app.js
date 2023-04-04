@@ -4,6 +4,7 @@ import { renderTodos } from './use-cases';
 
 const ElementIDs = {
 	TodoList: '.todo-list',
+	NewTodoInput: '#new-todo-input',
 };
 
 /**
@@ -24,3 +25,11 @@ export const App = (elementId) => {
 		displayTodos();
 	})();
 };
+
+//Referencias HMTL
+const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
+
+//Listeners
+newDescriptionInput.addEventListener('keyup', (event) => {
+	console.log(event);
+});
