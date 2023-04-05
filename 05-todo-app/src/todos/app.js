@@ -1,4 +1,4 @@
-import todoStore from '../store/todo.store';
+import todoStore, { Filters } from '../store/todo.store';
 import html from './app.html?raw';
 import { renderTodos } from './use-cases';
 
@@ -6,6 +6,7 @@ const ElementIDs = {
 	ButtonClearCompleted: '.clear-completed',
 	TodoList: '.todo-list',
 	NewTodoInput: '#new-todo-input',
+	TodoFilter: '.filtro',
 };
 
 /**
@@ -27,12 +28,13 @@ export const App = (elementId) => {
 	})();
 
 	//Referencias HMTL
-	const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
+	const NewDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
 	const TodoListUL = document.querySelector(ElementIDs.TodoList);
 	const ButtonClearCompleted = document.querySelector(ElementIDs.ButtonClearCompleted);
+	const FiltersLi = document.querySelectorAll(ElementIDs.TodoFilter);
 
 	//Listeners
-	newDescriptionInput.addEventListener('keyup', (event) => {
+	NewDescriptionInput.addEventListener('keyup', (event) => {
 		//Con esto hacemos que solo cuando pulsamos la tecla enter, que su keyCode es 13, ejecutamos estas acciones
 		if (event.keyCode != 13) return;
 		//Comprobamos que el campo no este vacío. Con trim() quitamos los espacios del princpio y final
@@ -64,5 +66,31 @@ export const App = (elementId) => {
 	ButtonClearCompleted.addEventListener('click', () => {
 		todoStore.deleteCompleted();
 		displayTodos();
+	});
+
+	FiltersLi.forEach((element) => {
+		element.addEventListener('click', (element) => {
+			FiltersLi.forEach((el) => {
+				el.classList.remove('selected');
+			});
+			element.target.classList.add('selected');
+
+			switch (element.target.text) {
+				case 'Todos':
+					todoStore.setFilter(Filters.All);
+					break;
+				case 'Pendientes':
+					todoStore.setFilter(Filters.Pending);
+					break;
+				case 'Completados':
+					todoStore.setFilter(Filters.Completed);
+					break;
+				default:
+					todoStore.setFilter(Filters.All);
+					break;
+			}
+
+			displayTodos();
+		});
 	});
 };
