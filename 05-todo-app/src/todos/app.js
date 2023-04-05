@@ -47,4 +47,15 @@ export const App = (elementId) => {
 		todoStore.toggleTodo(element.getAttribute('data-id'));
 		displayTodos();
 	});
+
+	TodoListUL.addEventListener('click', (event) => {
+		const isDestroyElement = event.target.className === 'destroy';
+		//closest('') Busca el elemento que le pasesmos más cercano hacia sus padres, en este caso el elemento más cercano hacia afuera que tenga el atributo data-id
+		const element = event.target.closest('[data-id]');
+
+		if (!element || !isDestroyElement) return;
+
+		todoStore.deleteTodo(element.getAttribute('data-id'));
+		displayTodos();
+	});
 };
