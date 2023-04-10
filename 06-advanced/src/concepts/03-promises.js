@@ -9,19 +9,27 @@ export const promiseComponent = (element) => {
 		element.innerHTML = hero.name;
 	};
 
+	const renderTwoHeroes = (hero1, hero2) => {
+		element.innerHTML = `
+		<h3>${hero1.name}</h3>
+		<h3>${hero2.name}</h3>
+		`;
+	};
+
 	const renderError = (error) => {
 		element.innerHTML = ` <h3>${error}</h3>`;
 	};
 
-	const id1 = '5d86371f25a058e5b1c8a65ea';
-	// findHero(id1)
-	// 	.then((superHero) => {
-	// 		renderHero(superHero);
-	// 	})
-	// 	.catch((error) => renderError(error));
+	const id1 = '5d86371f25a058e5b1c8a65e';
+	const id2 = '5d86371f233c9f2425f16916';
 
-	// Si en el then llamamos a otra función a la que le vamos a pasar exactamente los mismos parámetros podemos abreviarlo de esta manera.
-	findHero(id1).then(renderHero).catch(renderError);
+	findHero(id1)
+		.then((hero1) => {
+			findHero(id2).then((hero2) => {
+				renderTwoHeroes(hero1, hero2);
+			});
+		})
+		.catch(renderError);
 };
 
 /**
