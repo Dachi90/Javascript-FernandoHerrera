@@ -3,15 +3,27 @@
  * @param {HTMLDivElement} element
  */
 export const generatorFunctionsComponent = (element) => {
-	const myGenerator = myFirstGeneratorFunction();
+	const genId = IdGenerator();
+	// console.log(genId.next());
 
-	console.log(myGenerator.next());
-	console.log(myGenerator.next());
-	console.log(myGenerator.next());
-	console.log(myGenerator.next());
-	console.log(myGenerator.next());
-	console.log(myGenerator.next());
+	const button = document.createElement('button');
+	button.innerText = 'Click me';
+	element.append(button);
+
+	const renderButton = () => {
+		const { value } = genId.next();
+		button.innerText = `Click me ${value}`;
+	};
+
+	button.addEventListener('click', () => renderButton());
 };
+
+function* IdGenerator() {
+	let currentId = 0;
+	while (true) {
+		yield ++currentId;
+	}
+}
 
 function* myFirstGeneratorFunction() {
 	yield 'Primer valor';
