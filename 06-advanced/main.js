@@ -6,6 +6,7 @@ import { promiseComponent } from './src/concepts/03-promises';
 import { promiseRaceComponent } from './src/concepts/04-promise.race';
 import { asycnComponent } from './src/concepts/05-async';
 import { asyncAwaitComponent } from './src/concepts/06-async-await';
+import { asyncAwait2Component } from './src/concepts/07-async-await';
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -31,4 +32,5 @@ const element = document.querySelector('.card');
 //promiseComponent(element);
 //promiseRaceComponent(element);
 //asycnComponent(element);
-asyncAwaitComponent(element);
+//asyncAwaitComponent(element);
+asyncAwait2Component(element);
