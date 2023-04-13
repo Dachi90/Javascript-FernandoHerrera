@@ -5,6 +5,7 @@ import { callbackComponents } from './src/concepts/02-callbacks';
 import { promiseComponent } from './src/concepts/03-promises';
 import { promiseRaceComponent } from './src/concepts/04-promise.race';
 import { asycnComponent } from './src/concepts/05-async';
+import { asyncAwaitComponent } from './src/concepts/06-async-await';
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -29,4 +30,5 @@ const element = document.querySelector('.card');
 //callbackComponents(element);
 //promiseComponent(element);
 //promiseRaceComponent(element);
-asycnComponent(element);
+//asycnComponent(element);
+asyncAwaitComponent(element);
