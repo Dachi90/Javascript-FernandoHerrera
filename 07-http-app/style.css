@@ -43,6 +43,10 @@ h1 {
 	text-align: center;
 }
 
+.button {
+	border: 1px solid black;
+}
+
 .logo {
 	height: 3em;
 	padding: 1.5em;
