@@ -456,6 +456,13 @@
       "isActive": true,
       "last_name": "Herrera",
       "id": 51
+    },
+    {
+      "balance": 2000,
+      "first_name": "Martín",
+      "isActive": true,
+      "last_name": "Bergesio",
+      "id": 52
     }
   ]
 }
