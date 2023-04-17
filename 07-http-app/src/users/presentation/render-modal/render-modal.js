@@ -57,6 +57,9 @@ export const renderModal = (element, callback) => {
 	form.addEventListener('submit', async (event) => {
 		event.preventDefault();
 		const formData = new FormData(form);
+		if (!formData.get('isActive')) {
+			formData.append('isActive', 'off');
+		}
 		const userLike = { ...loadedUser };
 		for (const [key, value] of formData) {
 			if (key === 'balance') {
