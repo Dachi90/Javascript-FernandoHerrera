@@ -74,7 +74,7 @@ export const renderModal = (element, callback) => {
 
 		await callback(userLike);
 
-		hideModal;
+		hideModal();
 	});
 
 	element.append(modal);
